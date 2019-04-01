@@ -1,0 +1,14 @@
+<h2>Lista de Mensalista</h2>
+    <ul>
+    {% for valor in mensalista %}
+        <li><a href="{% url 'update_mensalista' valor.id %}">{{ valor.veiculo}} -
+            {{ valor.veiculo.proprietario}}</a></li>
+    {% endfor %}
+    </ul>
+
+<form action="{% url 'mensalista_novo' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Cadastrar</button>
+</form>

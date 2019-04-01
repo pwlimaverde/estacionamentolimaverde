@@ -1,0 +1,13 @@
+<h2>Lista de Marcas</h2>
+    <ul>
+    {% for valor in marca %}
+        <li><a href="{% url 'update_marca' valor.id %}">{{ valor.nome}}</a></li>
+    {% endfor %}
+    </ul>
+
+<form action="{% url 'marca_novo' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Cadastrar</button>
+</form>
