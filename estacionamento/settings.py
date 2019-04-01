@@ -14,7 +14,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['192.168.1.10', 'parkinglimaverde.herokuapp.com']
+ALLOWED_HOSTS = ['192.168.1.10', 'estacionamentolimaverde.herokuapp.com']
 
 # Application definition
 
