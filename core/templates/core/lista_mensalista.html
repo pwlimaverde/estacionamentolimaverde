@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
 <h2>Lista de Mensalista</h2>
     <ul>
     {% for valor in mensalista %}
@@ -12,3 +16,4 @@
 
     <button type="submit">Cadastrar</button>
 </form>
+{% endblock %}

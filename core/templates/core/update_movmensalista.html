@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
 <h2>Atualizando Movimento Mensalista: {{ movmensalista }}</h2>
 
 <form action="{% url 'update_movmensalista' movmensalista.id %}" method="POST">
@@ -7,3 +11,4 @@
     <button type="submit">Salvar</button>
 </form>
     <a href="{% url 'del_movmensalista' movmensalista.id %}">Deletar</a>
+{% endblock %}

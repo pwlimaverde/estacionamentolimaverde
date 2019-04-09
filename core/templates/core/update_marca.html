@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
 <h2>Atualizando Marca: {{ marca }}</h2>
 
 <form action="{% url 'update_marca' marca.id %}" method="POST">
@@ -7,3 +11,4 @@
     <button type="submit">Salvar</button>
 </form>
     <a href="{% url 'del_marca' marca.id %}">Deletar</a>
+{% endblock %}

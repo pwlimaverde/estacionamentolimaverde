@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
 <h2>Atualizando Mensalista: {{ mensalista }}</h2>
 
 <form action="{% url 'update_mensalista' mensalista.id %}" method="POST">
@@ -7,3 +11,4 @@
     <button type="submit">Salvar</button>
 </form>
     <a href="{% url 'del_mensalista' mensalista.id %}">Deletar</a>
+{% endblock %}
