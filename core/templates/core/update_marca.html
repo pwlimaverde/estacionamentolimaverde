@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
-
+{% load bootstrap %}
 {% block main %}
 
-<h2>Atualizando Marca: {{ marca }}</h2>
+<div class="row">
+    <div class="col">
+        <h2 align="center">Atualizando Marca: {{ marca }}</h2>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm-8">
+        <form action="{% url 'update_marca' marca.id %}" method="POST">
+            {% csrf_token %}
+            {{ form | bootstrap }}
+            <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+            <a href="{% url 'del_marca' marca.id %}" class="btn btn-danger btn-block">Deletar</a>
+        </form>
+    </div>
+</div>
 
-<form action="{% url 'update_marca' marca.id %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit">Salvar</button>
-</form>
-    <a href="{% url 'del_marca' marca.id %}">Deletar</a>
 {% endblock %}

@@ -1,14 +1,33 @@
 {% extends 'base.html' %}
-
+{% load bootstrap %}
 {% block main %}
 
-<h2>Atualizando Mensalista: {{ mensalista }}</h2>
+<div class="row">
+    <div class="col">
+        <h2 align="center">Atualizando Mensalista: {{ mensalista }}</h2>
+    </div>
+</div>
+<div class="row justify-content-center">
+   <div class="col-sm-8">
+        <form action="{% url 'update_mensalista' mensalista.id %}" method="POST">
+            {% csrf_token %}
+             <div class="row justify-content-md-start">
+                <div class="col-sm-4">
+                    {{ form.inicio | bootstrap }}
+                </div>
+                 <div class="col-sm-4">
+                    {{ form.valor_mes | bootstrap }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    {{ form.veiculo | bootstrap }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+            <a href="{% url 'del_mensalista' mensalista.id %}" class="btn btn-danger btn-block">Deletar</a>
+        </form>
+    </div>
+</div>
 
-<form action="{% url 'update_mensalista' mensalista.id %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit">Salvar</button>
-</form>
-    <a href="{% url 'del_mensalista' mensalista.id %}">Deletar</a>
 {% endblock %}
