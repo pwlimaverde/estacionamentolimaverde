@@ -1,14 +1,43 @@
 {% extends 'base.html' %}
-
+{% load bootstrap %}
 {% block main %}
 
-<h2>Atualizando Movimento Rotativo: {{ movrotativo }}</h2>
+<div class="row">
+    <div class="col-sm-12">
+        <h2 align="center">Lista de Movimento Rotativo</h2>
+    </div>
+</div>
+<div class="row row justify-content-center">
+    <div class="col-sm-8">
+        <form action="{% url 'update_movrotativo' movrotativo.id %}" method="POST">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-6">
+                    {{ form.checkin | bootstrap }}
+                </div>
+                <div class="col-sm-6">
+                    {{ form.checkout | bootstrap }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    {{ form.veiculo | bootstrap }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    {{ form.valor_hora | bootstrap }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ form.pago | bootstrap }}
+                </div>
+            </div>
+        <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+        <a href="{% url 'del_movrotativo' movrotativo.id %}" class="btn btn-danger btn-block">Deletar</a>
+        </form>
+    </div>
+</div>
 
-<form action="{% url 'update_movrotativo' movrotativo.id %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit">Salvar</button>
-</form>
-    <a href="{% url 'del_movrotativo' movrotativo.id %}">Deletar</a>
 {% endblock %}
