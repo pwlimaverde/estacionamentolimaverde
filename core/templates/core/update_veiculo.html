@@ -38,43 +38,5 @@
     </div>
 </div>
 
-
-<form action="{% url 'update_veiculo' veiculo.id %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit" class="btn btn-primary btn-block">Salvar</button>
-</form>
-
-
-
-<div class="col-sm-8 justify-content-center">
-        <form action="{% url 'update_veiculo' veiculo.id %}" method="POST">
-            {% csrf_token %}
-                <div class="row">
-                    <div class="col-sm-4">
-                        {{ form.placa | bootstrap }}
-                    </div>
-                    <div class="col-sm-4">
-                        {{ form.cor | bootstrap }}
-                    </div>
-                    <div class="col-sm-4">
-                        {{ form.marca | bootstrap }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        {{ form.proprietario | bootstrap }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        {{ form.observacoes | bootstrap }}
-                    </div>
-                </div>
-            <button type="submit" class="btn btn-primary btn-block">Salvar</button>
-            <a href="{% url 'del_veiculo' veiculo.id %}" class="btn btn-danger btn-block">Deletar</a>
-        </form>
-    </div>
 {% endblock %}
 
