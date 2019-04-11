@@ -30,7 +30,7 @@ from .views import (
 
 urlpatterns = [
     path('', home,
-         name='core_home'),
+         name='home_sistema'),
 
     path('pessoa/', lista_pessoa,
          name='lista_pessoa'),

@@ -16,6 +16,7 @@ from .form import (
     MovMensalistaForm,
 )
 
+
 def home(request):
     return render(request, 'core/index.html')
 
