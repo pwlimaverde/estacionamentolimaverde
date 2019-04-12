@@ -1,31 +1,45 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-	<title>Estacionamento 24 horas - Planos</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Estacionamento 24 horas - Planos">
-		<meta name="keywords" content="Estacionamento, 24 horas, carros, motos, fácio acesso, planos">
-		<meta name="author" content="Paulo W. Limaverde">
-		<meta name="robots" content="index, follow">
-</head>
-<body>
-	<header>
-		<img src="img/logo.png" alt="Estacionamento 24 horas - logo" width="100" height="100">
-		<p id="logo">Estacionamento 24 horas</p>
-		<p>Slogan da empresa aqui</p>
-	</header>
+{% extends 'base_website.html' %}
+{% load bootstrap %}
+{% block head %}
+	<meta name="description" content="Estacionamento 24 horas - Planos">
+	<meta name="keywords" content="Estacionamento, 24 horas, carros, motos, fácio acesso, planos">
+	<title>Estacionamento Limaverde - Planos</title>
+{% endblock %}
 
-	<nav>
-		<ul>
-			<li><a href="{% url 'home' %}">Home</a></li>
-			<li><a href="{% url 'servicos' %}">Serviços</a></li>
-			<li><a href="{% url 'sobre' %}">Sobre</a></li>
-			<li><a href="{% url 'planos' %}">Planos</a></li>
-			<li><a href="{% url 'contato' %}">Contato</a></li>
-		</ul>
-	</nav>
+{% block menu %}
+<ul class="nav nav-tabs">
+	<li class="nav-item">
+		<a class="nav-link" href="{% url 'home' %}">Home</a>
+	</li>
+	<li class="nav-item dropdown">
+		<a class="nav-link disabled dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Serviços</a>
+		<div class="dropdown-menu">
+			<a class="dropdown-item" href="{% url 'lista_marca' %}">Marcas</a>
+			<a class="dropdown-item" href="{% url 'lista_veiculo' %}">Veiculos</a>
+			<a class="dropdown-item" href="{% url 'lista_pessoa' %}">Pessoas</a>
+			<a class="dropdown-item" href="{% url 'lista_mensalista' %}">Mensalistas</a>
+		<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="{% url 'lista_movrotativo' %}">Movimento Rotativo</a>
+			<a class="dropdown-item" href="{% url 'lista_movmensalista' %}">Movimento Mensalista</a>
+		</div>
+	</li>
+	<li class="nav-item dropdown">
+		<a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+		<div class="dropdown-menu">
+			<a class="dropdown-item active" href="{% url 'planos' %}">Nossos Planos</a>
+			<a class="dropdown-item" href="{% url 'servicos' %}">Nossos Serviços</a>
+			<a class="dropdown-item" href="{% url 'sobre' %}">Sobre Nós</a>
+			<a class="dropdown-item" href="{% url 'contato' %}">Contato</a>
+		</div>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="{% url 'home_sistema' %}">Login</a>
+	</li>
+</ul>
+<br>
+{% endblock %}
 
+{% block main %}
 	<main>
 			<h1>Conheça nossos planos</h1>
 			<h2>Planos que cabem no seu bolso</h2>
@@ -37,7 +51,7 @@
 			</div>
 			<br>
 			<div id="image1">
-				<img src="img/estacionamento.jpg" width="200" height="100" alt="Estacionamento">
+				<img src="/static/imagens/estacionamento.jpg" width="200" height="100" alt="Estacionamento">
 			</div>
 			<button>Contratar</button>
 		</section>
@@ -48,29 +62,11 @@
 			</div>
 			<br>
 			<div id="image2">
-				<img src="img/estacionamento.jpg" width="200" height="100" alt="Estacionamento">
+				<img src="/static/imagens/estacionamento.jpg" width="200" height="100" alt="Estacionamento">
 			</div>
 			<button>Contratar</button>
 		</section>
 
 	</main>
 	<hr>
-	<footer>
-		
-		<nav>
-		<ul>
-			<li><a href="{% url 'home' %}">Home</a></li>
-			<li><a href="{% url 'servicos' %}">Serviços</a></li>
-			<li><a href="{% url 'sobre' %}">Sobre</a></li>
-			<li><a href="{% url 'planos' %}">Planos</a></li>
-			<li><a href="{% url 'contato' %}">Contato</a></li>
-		</ul>
-		</nav>
-
-		<section id="copyright">
-			<h2>Direitos</h2>
-			<p>Todos os direitos reservados | Desenvolvido por Paulo W. Limaverde</p>
-		</section>
-	</footer>
-</body>
-</html>
+{% endblock %}
