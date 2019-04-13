@@ -36,12 +36,46 @@
 {% block main %}
 
 <div class="row">
-    <div class="col-sm-12">
-        <h2 align="center">Lista de Veiculos</h2>
+        <div class="col-sm-8">
+        <h3 align="center">Veiculos Cadastrados</h3>
+            <div class="form-group input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+            </div>
+        <font size="2">
+        <table id="tabela" class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col" width="5%">Cod.</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Placa</th>
+                <th scope="col">Cor</th>
+                <th scope="col" width="25%">Proprietario</th>
+                <th scope="col">Observacoes</th>
+                <th scope="col" width="2%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for valor in veiculo %}
+                    <tr>
+                    <th scope="row">{{ valor.id }}</th>
+                    <td>{{ valor.marca }}</td>
+                    <td>{{ valor.placa }}</td>
+                    <td>{{ valor.cor }}</td>
+                    <td>{{ valor.proprietario }}</td>
+                    <td><font size="1">{{ valor.observacoes }}</font></td>
+                    <td><a href="{% url 'update_veiculo' valor.id %}" class="btn btn-light btn-sm">Atualizar</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </font>
+        <script>
+            $('input#txt_consulta').quicksearch('table#tabela tbody tr');
+        </script>
     </div>
-</div>
-<div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-4">
+        <h3 align="center">Novo Cadastro</h3>
         <form action="{% url 'veiculo_novo' %}" method="POST">
             {% csrf_token %}
                 <div class="row">
@@ -67,13 +101,6 @@
                 </div>
             <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
         </form>
-    </div>
-    <div class="col-sm-4">
-        <ul>
-            {% for valor in veiculo %}
-                <li><a href="{% url 'update_veiculo' valor.id %}">{{ valor }}</a></li>
-            {% endfor %}
-        </ul>
     </div>
 </div>
 

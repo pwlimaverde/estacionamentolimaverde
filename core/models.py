@@ -58,7 +58,7 @@ class MovRotativo(models.Model):
         if self.checkout:
             return math.ceil((self.checkout - self.checkin).total_seconds() / 3600)
         else:
-            return str(inh) + ':' + str(inm) + ' Em aberto'
+            return str(inh) + ':' + str(inm)
 
     def total(self):
         now = datetime.today()
