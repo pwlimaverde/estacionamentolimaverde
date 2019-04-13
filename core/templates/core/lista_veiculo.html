@@ -36,7 +36,7 @@
 {% block main %}
 
 <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-9">
         <h3 align="center">Veiculos Cadastrados</h3>
             <div class="form-group input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
@@ -74,7 +74,7 @@
             $('input#txt_consulta').quicksearch('table#tabela tbody tr');
         </script>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <h3 align="center">Novo Cadastro</h3>
         <form action="{% url 'veiculo_novo' %}" method="POST">
             {% csrf_token %}

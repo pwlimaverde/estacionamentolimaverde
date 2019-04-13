@@ -89,5 +89,5 @@ class MovMensalista(models.Model):
     total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False)
 
     def __str__(self):
-        return str(self.mensalista) + ' - ' + str(self.total)
+        return str(self.mensalista.veiculo.proprietario) + ' - ' + str(self.mensalista.veiculo)
 

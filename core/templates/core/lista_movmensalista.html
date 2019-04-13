@@ -36,12 +36,44 @@
 {% block main %}
 
 <div class="row">
-    <div class="col-sm-12">
-        <h2 align="center">Lista de Movimento Mensalista</h2>
+    <div class="col-sm-9">
+        <h3 align="center">Movimento Mensalista</h3>
+            <div class="form-group input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+            </div>
+        <font size="2">
+        <table id="tabela" class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col" width="5%">Cod.</th>
+                <th scope="col">Mensalista</th>
+                <th scope="col">Veiculo</th>
+                <th scope="col">Data de Pagamento</th>
+                <th scope="col">Valor</th>
+                <th scope="col" width="2%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for valor in movmensalista %}
+                <tr>
+                <th scope="row">{{ valor.id }}</th>
+                <td>{{ valor.mensalista.veiculo.proprietario }}</td>
+                <td>{{ valor.mensalista.veiculo }}</td>
+                <td>{{ valor.dt_pgto }}</td>
+                <td>{{ valor.total }}</td>
+                <td><a href="{% url 'update_movmensalista' valor.id %}" class="btn btn-light btn-sm">Atualizar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </font>
+        <script>
+            $('input#txt_consulta').quicksearch('table#tabela tbody tr');
+        </script>
     </div>
-</div>
-<div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-3">
+        <h3 align="center">Novo Cadastro</h3>
         <form action="{% url 'movmensalista_novo' %}" method="POST">
         {% csrf_token %}
             <div class="row">
@@ -59,13 +91,6 @@
             </div>
             <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
         </form>
-    </div>
-    <div class="col-sm-4">
-        <ul>
-            {% for valor in movmensalista %}
-                <li><a href="{% url 'update_movmensalista' valor.id %}">{{ valor}}</a></li>
-            {% endfor %}
-        </ul>
     </div>
 </div>
 

@@ -37,7 +37,7 @@
 {% block main %}
 
 <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-9">
         <h3 align="center">Pessoas Cadastradas</h3>
             <div class="form-group input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
@@ -51,7 +51,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Endereco</th>
                 <th scope="col">Telefone</th>
-                <th scope="col" width="5%"></th>
+                <th scope="col" width="2%"></th>
                 </tr>
             </thead>
             <tbody>
@@ -71,7 +71,7 @@
             $('input#txt_consulta').quicksearch('table#tabela tbody tr');
         </script>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <h3 align="center">Novo Cadastro</h3>
         <form action="{% url 'pessoa_novo' %}" method="POST">
             {% csrf_token %}
