@@ -6,18 +6,33 @@
 	<li class="nav-item">
 		<a class="nav-link" href="{% url 'home' %}">Home</a>
 	</li>
-	<li class="nav-item dropdown">
-		<a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Serviços</a>
-		<div class="dropdown-menu">
-			<a class="dropdown-item" href="{% url 'lista_marca' %}">Marcas</a>
-			<a class="dropdown-item" href="{% url 'lista_veiculo' %}">Veiculos</a>
-			<a class="dropdown-item active" href="{% url 'lista_pessoa' %}">Pessoas</a>
-			<a class="dropdown-item" href="{% url 'lista_mensalista' %}">Mensalistas</a>
-		<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{% url 'lista_movrotativo' %}">Movimento Rotativo</a>
-			<a class="dropdown-item" href="{% url 'lista_movmensalista' %}">Movimento Mensalista</a>
-		</div>
-	</li>
+	{% if user.is_authenticated %}
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Serviços</a>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" href="{% url 'lista_marca' %}">Marcas</a>
+				<a class="dropdown-item" href="{% url 'lista_veiculo' %}">Veiculos</a>
+				<a class="dropdown-item active" href="{% url 'lista_pessoa' %}">Pessoas</a>
+				<a class="dropdown-item" href="{% url 'lista_mensalista' %}">Mensalistas</a>
+			<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="{% url 'lista_movrotativo' %}">Movimento Rotativo</a>
+				<a class="dropdown-item" href="{% url 'lista_movmensalista' %}">Movimento Mensalista</a>
+			</div>
+		</li>
+	{% else %}
+		<li class="nav-item dropdown">
+			<a class="nav-link disabled dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Serviços</a>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" href="{% url 'lista_marca' %}">Marcas</a>
+				<a class="dropdown-item" href="{% url 'lista_veiculo' %}">Veiculos</a>
+				<a class="dropdown-item" href="{% url 'lista_pessoa' %}">Pessoas</a>
+				<a class="dropdown-item" href="{% url 'lista_mensalista' %}">Mensalistas</a>
+			<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="{% url 'lista_movrotativo' %}">Movimento Rotativo</a>
+				<a class="dropdown-item" href="{% url 'lista_movmensalista' %}">Movimento Mensalista</a>
+			</div>
+		</li>
+	{% endif %}
 	<li class="nav-item dropdown">
 		<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
 		<div class="dropdown-menu">
@@ -27,9 +42,18 @@
 			<a class="dropdown-item" href="{% url 'contato' %}">Contato</a>
 		</div>
 	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="{% url 'home_sistema' %}">Login</a>
-	</li>
+	{% if user.is_authenticated %}
+		<li class="nav-item">
+			<a class="nav-link disabled" href="">Bem vindo {{ user }}</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="{% url 'logout' %}">Logout</a>
+		</li>
+	{% else %}
+		<li class="nav-item">
+		<a class="nav-link" href="{% url 'login' %}">Login</a>
+		</li>
+	{% endif %}
 </ul>
 <br>
 {% endblock %}

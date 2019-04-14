@@ -11,8 +11,8 @@
 			<div class="dropdown-menu">
 				<a class="dropdown-item" href="{% url 'lista_marca' %}">Marcas</a>
 				<a class="dropdown-item" href="{% url 'lista_veiculo' %}">Veiculos</a>
-				<a class="dropdown-item active" href="{% url 'lista_pessoa' %}">Pessoas</a>
-				<a class="dropdown-item" href="{% url 'lista_mensalista' %}">Mensalistas</a>
+				<a class="dropdown-item" href="{% url 'lista_pessoa' %}">Pessoas</a>
+				<a class="dropdown-item active" href="{% url 'lista_mensalista' %}">Mensalistas</a>
 			<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="{% url 'lista_movrotativo' %}">Movimento Rotativo</a>
 				<a class="dropdown-item" href="{% url 'lista_movmensalista' %}">Movimento Mensalista</a>
@@ -57,34 +57,41 @@
 <br>
 {% endblock %}
 
+
 {% block main %}
+<div class="row" align="center">
+    <div class="col-sm-12">
+        {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
 
-<div class="row">
-    <div class="col">
-        <h2 align="center">Atualizando Pessoa: {{ pessoa }}</h2>
-    </div>
-</div>
-<div class="row justify-content-center">
-    <div class="col-sm-8">
-        <form action="{% url 'update_pessoa' pessoa.id %}" method="POST">
-            {% csrf_token %}
-                <div class="row">
-                    <div class="col-sm-12">
-                        {{ form.nome | bootstrap }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-8">
-                        {{ form.endereco | bootstrap }}
-                    </div>
-                    <div class="col-sm-4">
-                        {{ form.telefone | bootstrap }}
-                    </div>
-                </div>
-            <button type="submit" class="btn btn-primary btn-block">Salvar</button>
-            <a href="{% url 'del_pessoa' pessoa.id %} " class="btn btn-danger btn-block">Deletar</a>
+        {% if next %}
+            {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed,
+            please login with an account that has access.</p>
+            {% else %}
+            <p>Please login to see this page.</p>
+            {% endif %}
+        {% endif %}
+
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+        <tr>
+            <td>{{ form.username | bootstrap }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password | bootstrap }}</td>
+        </tr>
+        </table>
+
+        <input type="submit" class="btn btn-primary" value="login">
+        <input type="hidden" name="next" class="btn btn-primary" value="{{ next }}">
         </form>
+
+        {# Assumes you setup the password_reset view in your URLconf #}
+        <p><a href="{% url 'password_reset' %}">Perdeu a Senha?</a></p>
+
     </div>
 </div>
-
 {% endblock %}
