@@ -38,10 +38,6 @@
 <div class="row">
     <div class="col-sm-9">
         <h3 align="center">Movimento Rotativo</h3>
-            <div class="form-group input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
-            </div>
         <font size="1">
         <table id="tabela" class="table table-striped">
             <thead>
@@ -82,7 +78,6 @@
                             Não
                         {% endif %}
                     </td>
-                    <td><font size="1">{{ valor.observacoes }}</font></td>
                     <td><a href="{% url 'update_movrotativo' valor.id %}" class="btn btn-light btn-sm">Atualizar</a></td>
                     </tr>
                 {% endfor %}
@@ -90,11 +85,20 @@
         </table>
         </font>
         <script>
-            $('input#txt_consulta').quicksearch('table#tabela tbody tr');
+            $(document).ready(function(){
+              $('#tabela').DataTable({
+                  "language": {
+                        "lengthMenu": "Mostrando _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado",
+                        "info": "Mostrando página _PAGE_ de _PAGES_",
+                        "infoEmpty": "Nenhum registro disponível",
+                        "infoFiltered": "(filtrado de _MAX_ registros no total)"
+                    }
+                });
+            });
         </script>
     </div>
     <div class="col-sm-3">
-        <h3 align="center">Novo Cadastro</h3>
         <form action="{% url 'movrotativo_novo' %}" method="POST">
         {% csrf_token %}
             <div class="row">
